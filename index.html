@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<title>美国国家信息安全漏洞指纹库</title>
+<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"> 
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.bootcss.com/datatables/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+
+<script src="http://hn.cvecn.com/dat/filelist"></script>
+<script src="http://hn.cvecn.com/dat/log"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    
+    $('#t0').DataTable({
+        data: dat0,
+        columns: col0,
+        "order": [[ 0, "desc" ]]
+    });
+    $('#t1').DataTable({
+        data: dat1,
+        columns: col1,
+        "order": [[ 0, "desc" ]]
+    });
+} );
+</script>
+
+<style>
+    .jumbotron{
+        background:url("http://ww1.sinaimg.cn/large/87c01ec7gy1fplacfacbcj21hc0tzgrk.jpg");
+    
+    }
+    body {
+        padding-top: 3rem;
+    }
+    footer{
+        width:100%;
+        text-align:center;
+    }
+    section {
+        padding-top: 4rem;
+    }
+
+</style>
+</head>
+<body>
+        
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="#">CVESCAN</a>
+                <!--<img src="a.png" class="img-fluid" style="height: 25px;  display: block;"></img>-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+               
+              </nav>
+        <div class="jumbotron">
+                <div class="container">
+                        <h2 style="color:white;" class="display-4">美国国家信息安全漏洞指纹库</h2>
+                        <ul style="color:white;">
+                            <li>指纹库是漏洞数据库的基础库,用于快速且准确的定位软件中的安全漏洞，依据CVE编号可以进一步获取漏洞修复方法</li>
+                            <li>分析引擎使用每日更新的美国国家信息安全漏洞指纹库，精准识别并定位任意格式文件或代码中的安全漏洞</li>                    
+                            <li>无需登录，无需注册，上传后数分钟内即可查看报告摘要(支付后可查看完整报告)</li>
+                            <li>支持任意文件格式, 包括bin格式的路由器固件, 物联网设备固件, 嵌入式软件, 安卓apk, 苹果ipa, DMG, exe, iso, x86, x64, linux, ARM 等等任意平台任意格式</li>
+                            <li>适用于项目验收, 软件外包, 安全检测, 第三方评测等各行业</li>
+                        </ul>
+                        <p>
+                          <a class="btn btn-info btn-lg" href="http://hn.cvecn.com" role="button">上传分析 &raquo;</a>&nbsp;
+                          </p>
+
+  
+                </div>
+              </div>
+<div class="container" style="white-space:nowrap">
+
+    <div class="row">
+    <div class="col-md-12" > 
+            <p class="btn-info text-center">文件清单</p>       
+        <table id="t0" class="display compact">    </table>
+
+            <p class="btn-info text-center">日志</p>
+        <table id="t1" class="display compact">    </table>
+    </div></div>
+    <div class="row">
+            <div class="col-md-12">
+              
+              <p>技术支持微信号</p>
+              <img src="http://ww4.sinaimg.cn/large/87c01ec7gy1fqnporh3nmj203c03caa4.jpg"></img>  
+    </div></div>
+</div>
+
+</body>
+</html>
