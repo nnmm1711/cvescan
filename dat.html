@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="https://cdn.bootcss.com/datatables/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
+<script>
+        var st = window.location.href;
+        var h=st.substr(st.length-72);
+        var src0="http://hn.cvecn.com/dat/f_"+h;
+        
+        if (h.indexOf("?")>0)
+        {
+            h=st.substr(st.length-40);
+            var src0="http://hn.cvecn.com/dat/s_"+h;
+        }
+
+        //var src0="http://127.0.0.1:2006/dat/f_792ac18a1dff0744e810ad35e74db600b541b0a31b6b7b22c6417495825b74b3796eaa38";
+        //var src0="http://127.0.0.1:2006/dat/s_792ac18a1dff0744e810ad35e74db600b541b0a3";
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    $.getScript(src0, function() {
+        $("#title1").html(t1);
+        $("#title2").html(t2);
+        $('#t0').DataTable({
+            data: v_dat,
+            columns: v_col,
+            "order": v_sort
+        });
+        $('#t1').DataTable({
+            data: l_dat,
+            columns: l_col,
+            "order": l_sort
+        });
+    });
+} );
+</script>
+<style type="text/css">
+div{
+    white-space:nowrap;
+}
+</style>
+</head>
+<body>
+        
+<div class="container">
+    <div class="row"><div class="col-md-12"> 
+            <div id="title1"></div> 
+            <div id="title2"></div> 
+    </div></div>
+    <div class="row">
+    <div class="col-md-12"> 
+            <p class="btn-success text-center">漏洞清单</p>       
+        <table id="t0" class="display compact">    </table>
+
+            <p class="btn-success text-center">组件清单</p>
+        <table id="t1" class="display compact">    </table>
+    </div></div>
+</div>
+
+</body>
+</html>
