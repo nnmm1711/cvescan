@@ -14,19 +14,24 @@
 
 <script src="http://hn.cvecn.com/dat/filelist"></script>
 <script src="http://hn.cvecn.com/dat/log"></script>
+<script src="http://hn.cvecn.com/dat/vf_792ac18a1dff0744e810ad35e74db600b541b0a3"></script>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
-    
     $('#t0').DataTable({
-        data: dat0,
+        data: dat0,  //qq文件漏洞信息
         columns: col0,
         "order": [[ 0, "desc" ]]
     });
-    $('#t1').DataTable({
-        data: dat1,
-        columns: col1,
+    $('#t8').DataTable({
+        data: dat8,   //文件清单
+        columns: col8,
+        "order": [[ 0, "desc" ]]
+    });
+    $('#t9').DataTable({
+        data: dat9,     //系统日志
+        columns: col9,
         "order": [[ 0, "desc" ]]
     });
 
@@ -114,11 +119,14 @@ $(document).ready(function() {
 
     <div class="row">
     <div class="col-md-12" style="white-space:nowrap"> 
-            <p class="btn-info text-center">文件清单</p>       
+        <p class="btn-info text-center">QQ8.9.6-8.9.22427.6.exe完整安全分析报告(SHA1:792ac18a1dff0744e810ad35e74db600b541b0a3)</p>       
         <table id="t0" class="display compact">    </table>
 
-            <p class="btn-info text-center">日志</p>
-        <table id="t1" class="display compact">    </table>
+        <p class="btn-info text-center">文件清单</p>       
+        <table id="t8" class="display compact">    </table>
+
+        <p class="btn-info text-center">日志</p>
+        <table id="t9" class="display compact">    </table>
     </div></div>
     <hr>
     <div class="row">
