@@ -8,16 +8,16 @@
 <script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
 <script>
         var st = window.location.href;
-        var h=st.substr(st.length-72);
+        var h=st.substr(-72);
         var src0="http://hn.cvecn.com/dat/f_"+h;
         
         if (h.indexOf("?")>0)
         {
-            h=st.substr(st.length-40);
+            h=st.substr(-40);
             var src0="http://hn.cvecn.com/dat/s_"+h;
         }
 
-        alert(h);
+        //alert(h);
 </script>
 
 <script type="text/javascript">
