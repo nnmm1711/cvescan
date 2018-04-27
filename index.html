@@ -20,16 +20,19 @@
 
 $(document).ready(function() {
     $('#t0').DataTable({
+        "language": {"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"},
         data: v_dat,  //qq文件漏洞信息
         columns: v_col,
         "order": v_sort
     });
     $('#t8').DataTable({
+        "language": {"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"},
         data: dat8,   //文件清单
         columns: col8,
         "order": [[ 0, "desc" ]]
     });
     $('#t9').DataTable({
+        "language": {"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"},
         data: dat9,     //系统日志
         columns: col9,
         "order": [[ 0, "desc" ]]

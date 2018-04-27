@@ -27,11 +27,13 @@ $(document).ready(function() {
         $("#title1").html(t1);
         $("#title2").html(t2);
         $('#t0').DataTable({
+            "language": {"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"},
             data: v_dat,
             columns: v_col,
             "order": v_sort
         });
         $('#t1').DataTable({
+            "language": {"url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"},
             data: l_dat,
             columns: l_col,
             "order": l_sort
