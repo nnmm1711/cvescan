@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('#t0').DataTable({
         data: v_dat,  //qq文件漏洞信息
         columns: v_col,
-        "order": [[ 4, "desc" ]]
+        "order": v_sort
     });
     $('#t8').DataTable({
         data: dat8,   //文件清单
