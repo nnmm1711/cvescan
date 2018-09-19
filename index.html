@@ -1,152 +1,405 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <title>CVESCAN.com</title>
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
-    <link href="https://cdn.bootcss.com/datatables/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>中科软评</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage fixed full-screen backgrounds." />
+    <meta name="keywords" content="fullpage,jquery,demo,screen,fixed,fullscreen,backgrounds,full-screen" />
+    <meta name="Resource-type" content="Document" />
 
 
 
-
-
-    
 
     <style>
-        .jumbotron {
-            background: url("http://ww1.sinaimg.cn/large/87c01ec7gy1fplacfacbcj21hc0tzgrk.jpg");
 
-        }
 
-        body {
-            padding-top: 3rem;
-        }
 
-        footer {
-            width: 100%;
-            text-align: center;
-        }
+        /*!
+ * fullPage 3.0.2
+ * https://github.com/alvarotrigo/fullPage.js
+ *
+ * @license GPLv3 for open source use only
+ * or Fullpage Commercial License for commercial use
+ * http://alvarotrigo.com/fullPage/pricing/
+ *
+ * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
+ */
+ html.fp-enabled,
+.fp-enabled body {
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
 
-        section {
-            padding-top: 4rem;
-        }
-    </style>
+    /*Avoid flicker on slides transitions for mobile phones #336 */
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.fp-section {
+    position: relative;
+    -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
+    -moz-box-sizing: border-box; /* <=28 */
+    box-sizing: border-box;
+}
+.fp-slide {
+    float: left;
+}
+.fp-slide, .fp-slidesContainer {
+    height: 100%;
+    display: block;
+}
+.fp-slides {
+    z-index:1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
+    transition: all 0.3s ease-out;
+}
+.fp-section.fp-table, .fp-slide.fp-table {
+    display: table;
+    table-layout:fixed;
+    width: 100%;
+}
+.fp-tableCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+.fp-slidesContainer {
+    float: left;
+    position: relative;
+}
+.fp-controlArrow {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-top: -38px;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.fp-controlArrow.fp-prev {
+    left: 15px;
+    width: 0;
+    border-width: 38.5px 34px 38.5px 0;
+    border-color: transparent #fff transparent transparent;
+}
+.fp-controlArrow.fp-next {
+    right: 15px;
+    border-width: 38.5px 0 38.5px 34px;
+    border-color: transparent transparent transparent #fff;
+}
+.fp-scrollable {
+    overflow: hidden;
+    position: relative;
+}
+.fp-scroller{
+    overflow: hidden;
+}
+.iScrollIndicator{
+    border: 0 !important;
+}
+.fp-notransition {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+#fp-nav {
+    position: fixed;
+    z-index: 100;
+    margin-top: -32px;
+    top: 50%;
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+}
+#fp-nav.fp-right {
+    right: 17px;
+}
+#fp-nav.fp-left {
+    left: 17px;
+}
+.fp-slidesNav{
+    position: absolute;
+    z-index: 4;
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    left: 0 !important;
+    right: 0;
+    margin: 0 auto !important;
+}
+.fp-slidesNav.fp-bottom {
+    bottom: 17px;
+}
+.fp-slidesNav.fp-top {
+    top: 17px;
+}
+#fp-nav ul,
+.fp-slidesNav ul {
+  margin: 0;
+  padding: 0;
+}
+#fp-nav ul li,
+.fp-slidesNav ul li {
+    display: block;
+    width: 14px;
+    height: 13px;
+    margin: 7px;
+    position:relative;
+}
+.fp-slidesNav ul li {
+    display: inline-block;
+}
+#fp-nav ul li a,
+.fp-slidesNav ul li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li:hover a.active span{
+    height: 12px;
+    width: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 100%;
+ }
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    height: 4px;
+    width: 4px;
+    border: 0;
+    background: #333;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+#fp-nav ul li:hover a span,
+.fp-slidesNav ul li:hover a span{
+    width: 10px;
+    height: 10px;
+    margin: -5px 0px 0px -5px;
+}
+#fp-nav ul li .fp-tooltip {
+    position: absolute;
+    top: -2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    white-space: nowrap;
+    max-width: 220px;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+    width: 0;
+    cursor: pointer;
+}
+#fp-nav ul li:hover .fp-tooltip,
+#fp-nav.fp-show-active a.active + .fp-tooltip {
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    width: auto;
+    opacity: 1;
+}
+#fp-nav ul li .fp-tooltip.fp-right {
+    right: 20px;
+}
+#fp-nav ul li .fp-tooltip.fp-left {
+    left: 20px;
+}
+.fp-auto-height.fp-section,
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell{
+    height: auto !important;
+}
+
+.fp-responsive .fp-auto-height-responsive.fp-section,
+.fp-responsive .fp-auto-height-responsive .fp-slide,
+.fp-responsive .fp-auto-height-responsive .fp-tableCell {
+    height: auto !important;
+}
+
+
+</style>
+    <style>
+
+
+        /* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 7em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section0,
+	#section1,
+	#section2,
+	#section3,
+    #slide1,
+    #slide2{
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
+	/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		background-image: url("http://wx1.sinaimg.cn/large/0060lm7Tly1fver24zftij314a0p0jxr.jpg");
+       /* http://wx3.sinaimg.cn/large/0060lm7Tly1fv9cxgcjhoj31kw12rb29.jpg*/
+	}
+	#section0 h1{
+		top: 50%;
+		transform: translateY(-50%);
+		position: relative;
+	}
+	#section2{
+		background-image: url("http://wx1.sinaimg.cn/large/0060lm7Tly1fv9deb8ktvj30q40hfju7.jpeg");
+		padding: 6% 0 0 0;
+	}
+	#section3{
+        background-image: url("https://www.babaimage.com/images/technology-backgrounds-blue-technology-white-ppt-backgrounds.jpg");
+		padding: 6% 0 0 0;
+	}
+    #section1{
+        background-image: url("http://wx4.sinaimg.cn/large/0060lm7Tly1fv9df05bzij30xc0m9k4c.jpeg");
+		padding: 6% 0 0 0;
+	}
+	#section3 h1{
+		color: #000;
+	}
+	#header, #footer{
+		position:fixed;
+		
+		display:block;
+		width: 100%; 
+		background: #333;
+		z-index:9;
+		text-align:left;
+		color: #f2f2f2;
+		padding: 10px 10px 10px 10px;
+	}
+
+	#header{
+		top:0px;
+	}
+	#footer{
+		bottom:0px;
+	}
+
+
+
+
+	/* Bottom menu
+	* --------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+	</style>
+    <!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">CVESCAN.com</a>
+    <div id="header">中 科 软 评</div>
+    <div id="footer" style="text-align:center">zk@zkruanping.com 2018</div>
 
-        <!--<img src="a.png" class="img-fluid" style="height: 25px;  display: block;"></img>-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="http://www.cnnvd.org.cn/">中国国家信息安全漏洞库</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://nvd.nist.gov">美国国家漏洞数据库NVD</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://cve.mitre.org">全球漏洞数据库CVE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.nist.gov/itl">美国国家信息安全实验室ITL</a>
-                </li>
-
-
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <h1 class="display-1" style="text-shadow: 9px 9px 9px rgb(0, 0, 0);">中 科 软 评<br><br>信息安全监测与评测中心建设专家</h1>
+            <h1><a href="cvescan.html">漏洞库检测服务</a></h1>
+        </div>
+        <div class="section" id="section3">
+            <span style="font-size:60px;text-shadow: 9px 9px 9px rgb(117, 117, 117);">监测与评测</span>
+           
+            <ul style="text-align:left;font-size: 2em">
+                <li >安全态势感知 结合多年安全研究成果和网络安全建设经验，以大数据技术架构为核心开发的集安全要素获取、分析、处理、跟踪、预测为一体的全流程安全解决方案。结合机器学习、云端情报联动等技术，实现对整体网络的安全态势感知。目前，方案已成熟应用于政府、交通、企业、教育等多行业用户，帮助用户真正实现“看得见的安全，信得过的网络”。</li>
+                <li >专利技术机密验收模式 代码不离被测单位， 进行代码验收时甲乙双方无任何数据交换。使用全程无需联网。可满足最高级别涉密项目验收的需要</li>
+                <li>静态代码分析 - 支持21种常用编程语言和50多种常用编译器. 分析精度和速度均大幅优于国际领先水平。可用于超大规模项目代码验收</li>
+                <li>代码组成分析 - 量化评估自主可控程度。精准定位代码中的外部来源部分。离线数据库包含超过180亿行代码指纹信息。</li>
+                <li>二进制文件分析 - 可分析任意格式二进制代码，基于全球漏洞信息库准确定位二进制文件中的漏洞</li>
+                <li>模糊测试 - 挖掘未知漏洞的利器，准确定位各种设备与软件中的未知漏洞</li>
+                <li>渗透测试 - 模拟黑客攻击手段对目标网络进行攻击以探测系统漏洞</li>
+                <li>单元测试 - 通过观察程序在运行过程中的状态，如寄存器内容，函数执行结果，内存使用情况等等，分析函数功能，明确代码逻辑，挖掘可能存在的漏洞</li>
+                <li>压力测试 - 通过模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题。</li>
+                <li>物联网安全检测 - 支持最广泛的物联网IOT设备</li>
+                <li>工控安全监测 - 涵盖国内外上百款工控设备的漏洞信息和安全检测工具</li>
+                <li>汽车安全检测 -CANBUS CANFD ETHERNET等互联网汽车专用安全检测工具</li>
             </ul>
-
+        </div>
+        <div class="section" id="section1">
+                <br><br><br>
+                <h1 style="font-size:90px;text-shadow: 9px 9px 9px rgb(117, 117, 117);">信息安全监管中心</h1>
+                <h1 style="font-size:90px;text-shadow: 9px 9px 9px rgb(117, 117, 117);">软硬件评测中心</h1>
+                <h1 style="font-size:90px;text-shadow: 9px 9px 9px rgb(117, 117, 117);">软硬件安全检测中心</h1>
+                <h1 style="font-size:90px;text-shadow: 9px 9px 9px rgb(117, 117, 117);">网络攻防对抗指挥中心</h1>
+           
+          
+        </div>
+        <div class="section" id="section2">
+                <h1  style="text-shadow: 9px 9px 9px rgb(0, 0, 0);">国家发明专利<br> 自主可控</h1>
+                <br><br><br>
+                <img width="300px" src="https://i.loli.net/2018/09/18/5ba0309dea3f5.jpg" id="qr"/>
         </div>
 
-
-
-    </nav>
-    <div class="jumbotron">
-        <div class="container">
-            <h2 style="color:white;" class="display-4 text-center">全球信息安全漏洞库</h2>
-            <h3 style="color:white;" class="text-center">文件检测服务中心</h3>
-            <ul style="color:white;">
-                <li>检测原理: 汇集中国国家信息安全漏洞库，美国国家信息安全漏洞库，赛门铁克漏洞库等行业著名漏洞库资源中超过90%的漏洞数据，安全技术团队通过监控编译过程，获取了漏洞在各个平台下的多维变尺度特征信息("Multidimensional
-                    Vector")，形成漏洞指纹特征大数据信息库. 借助于每日更新的全球安全漏洞特征库，高精度扫描引擎可以快速且准确的定位任意格式文件或代码中的安全漏洞，也可以进一步依据CVE编号获取漏洞修复方法</li>
-                <li>与其它杀毒引擎不同，本服务旨在发现软件成份中公认的安全缺陷，对开发人员和验收人员具有极高的实用价值，误报率接近于零</li>
-                <li>无需登录，无需注册，上传文件后十分钟内即可查看报告摘要(查看完整报告需付费)</li>
-                <li>支持任意文件格式, 包括bin格式的路由器固件, 物联网设备固件, 嵌入式软件, 安卓apk, 苹果ipa, DMG, exe, iso, x86, x64, linux, ARM 等等任意平台任意格式</li>
-                <li>适用于项目验收, 软件外包, 安全检测, 第三方测评等行业</li>
-            </ul>
-            <p class="text-center">
-                <a class="btn btn-info btn-lg" href="http://cve.xth.dynu.net/" role="button">上传分析 &raquo;</a>&nbsp;
-                <a class="btn btn-success btn-lg" href="#offline" role="button">离线服务 &raquo;</a>
-
-            </p>
-
-
-        </div>
-    </div>
-    <div class="container">
-
-  
-        <hr>
-        <div class="row">
-
-            <div class="col-md-6">
-                <p>
-                    <a class="btn btn-primary" href="#" name="offline">离线服务</a> 提供一次性检测设备在完全物理隔离的离线环境中使用，检测任务完成后设备与数据库自动销毁，确保无任何电子设备离开被测环境。 如需API接口服务请与技术支持微信联系。
-                </p>
-
-            </div>
-            <div class="col-md-6">
-                <div class="text-center">
-                    <p>
-                        <a>技术支持微信号</a>
-                    </p>
-                    <img src="https://i.loli.net/2018/08/20/5b7a209819257.jpg" alt="微信图片_20180820095938.jpg" title="微信图片_20180820095938.jpg" width="100px" />
-                </div>
-
-
-            </div>
-        </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/fullpage.js@3.0.2/dist/fullpage.min.js"></script>
 
 
-            <ul class="list-inline">
-                <li class="list-inline-item">
-                    <a href="https://nvd.nist.gov">美国国家漏洞数据库</a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="https://www.nist.gov/itl">美国国家信息安全实验室</a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="https://cve.mitre.org">全球漏洞数据库CVE</a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="http://www.ceprei.com/">赛宝实验室</a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="http://www.cstc.org.cn/">中国软件评测中心</a>
-                </li>
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            verticalCentered: false,
 
-
-            </ul>
-
-        </div>
-    </footer>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+            //to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
+            css3: false
+        });
+    </script>
 </body>
 
 </html>
